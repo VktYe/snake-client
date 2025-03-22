@@ -1,3 +1,4 @@
+const { movementCommands, sayCommands} = require("./constants");
 let connection;
 const setupInput = function(conn) {
   connection = conn;
@@ -9,35 +10,21 @@ const setupInput = function(conn) {
   return stdin;
 };
 
-const movementCommands = {
-  'w': 'up',
-  'a': 'left',
-  's': 'down',
-  'd': 'right'
-};
-
-const sayCommands = {
-  'q': 'Sss-up?',
-  'e': 'Hi :)',
-  'r': 'XDD',
-  
-}
-
 const handleUserInput = function(key) {
   if (key === "\u0003") {
-    console.log("You are leaving the game. :(")
+    console.log("You are leaving the game. :(");
     process.exit();
-  };
+  }
 
   const direction = movementCommands[key.toLowerCase()];
-    if(direction) { 
-      connection.write(`Move: ${direction}`)  
-    };  
+  if (direction) {
+    connection.write(`Move: ${direction}`);
+  }
   
   const sayMessage = sayCommands[key.toLowerCase()];
-    if(sayMessage) { 
-      connection.write(`Say: ${sayMessage}`)  
-    };   
+  if (sayMessage) {
+    connection.write(`Say: ${sayMessage}`);
+  }
   
 
 };
