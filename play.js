@@ -9,11 +9,15 @@ const connect = function () {  //used createConnection function from net library
 
   conn.on("data", (data) => {
     console.log("Server says: ", data);
-  })
+  });
 
   conn.on("connect", () => {
     conn.write("Hello from a new client!")//code that does something when a connection is first established
-  })
+  });
+
+  conn.on("error", (error) => {
+    console.log("Connecrtion error: ", error);
+  });
 
   // interpret incoming data as text
   conn.setEncoding("utf8");
