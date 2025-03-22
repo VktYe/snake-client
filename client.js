@@ -4,7 +4,7 @@ const net = require("net"); //used Node "net library"
 const connect = function() {  //used createConnection function from net library
   const conn = net.createConnection({
     host: "localhost",
-    port: 50541
+    port: 50541, 
   });
 
   conn.on("data", (data) => {
@@ -12,7 +12,8 @@ const connect = function() {  //used createConnection function from net library
   });
 
   conn.on("connect", () => {
-    conn.write("Hello from a new client!");
+    console.log("Successfully connected to game server");
+    conn.write("Name: HRN");
   });
 
   conn.on("error", (error) => {
