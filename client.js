@@ -16,6 +16,10 @@ const connect = function() {  //used createConnection function from net library
     conn.write("Name: HRN");
   });
 
+  conn.on("connect", () => {
+    conn.write("Move: up");
+  });
+
   conn.on("error", (error) => {
     console.log("Connecrtion error: ", error);
   });
