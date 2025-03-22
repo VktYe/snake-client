@@ -4,7 +4,7 @@ const net = require("net"); //used Node "net library"
 const connect = function() {  //used createConnection function from net library
   const conn = net.createConnection({
     host: "localhost",
-    port: 50541, 
+    port: 50541,
   });
 
   conn.on("data", (data) => {
@@ -16,11 +16,7 @@ const connect = function() {  //used createConnection function from net library
     conn.write("Name: HRN");
   });
 
-  conn.on("connect", () => {
-    conn.write("Move: up");
-  });
-
-  conn.on("error", (error) => {
+    conn.on("error", (error) => {
     console.log("Connecrtion error: ", error);
   });
 
@@ -30,4 +26,6 @@ const connect = function() {  //used createConnection function from net library
   return conn; //connection with the server
 };
 
-module.exports = connect;
+module.exports = {
+  connect
+};
