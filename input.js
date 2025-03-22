@@ -9,28 +9,37 @@ const setupInput = function(conn) {
   return stdin;
 };
 
+const movementCommands = {
+  'w': 'up',
+  'a': 'left',
+  's': 'down',
+  'd': 'right'
+};
+
+const sayCommands = {
+  'q': 'Sss-up?',
+  'e': 'Hi :)',
+  'r': 'XDD',
+  
+}
+
 const handleUserInput = function(key) {
   if (key === "\u0003") {
     console.log("You are leaving the game. :(")
     process.exit();
   };
 
-  if (key === 'w' || key === 'W') {
-    connection.write("Move: up");
-  };
-
-  if (key === 'a' || key === 'A') {
-    connection.write("Move: left");
-  };
-
-  if (key === 's' || key === 'S') {
-    connection.write("Move: down");
-  };
-
-  if (key === 'd' || key === 'D') {
-    connection.write("Move: right");
-  };
+  const direction = movementCommands[key.toLowerCase()];
+    if(direction) { 
+      connection.write(`Move: ${direction}`)  
+    };  
   
+  const sayMessage = sayCommands[key.toLowerCase()];
+    if(sayMessage) { 
+      connection.write(`Say: ${sayMessage}`)  
+    };   
+  
+
 };
 
 module.exports = {
